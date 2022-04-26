@@ -1,6 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>git</title>
+    <url>/2022/04/26/git/</url>
+    <content><![CDATA[<h2 id="Git-工作区、暂存区、版本库"><a href="#Git-工作区、暂存区、版本库" class="headerlink" title="Git 工作区、暂存区、版本库"></a>Git 工作区、暂存区、版本库</h2><p><strong>工作区：</strong> 本地电脑的工作目录</p>
+<p><strong>暂存区：</strong> 称为Stage或index，一般存放在(.git&#x2F;index)   </p>
+<p><strong>版本库：</strong> 工作区的隐藏文件 (.git)    </p>
+<span id="more"></span>
+<h2 id="Git常用操作"><a href="#Git常用操作" class="headerlink" title="Git常用操作"></a>Git常用操作</h2><ul>
+<li>git init 初始化仓库，在本地目录执行git init，就可以建立一个Git仓库</li>
+<li>git clone 拷贝一个仓库到当前目录，可以是本机的也可以是远程服务器上的</li>
+<li>git status 查看项目当前状态</li>
+<li>git diff 显示git status 的详细信息</li>
+<li>git log 查看log信息 –oneline 简明信息 –reverse 反向顺序打印</li>
+<li>git rm &lt;file&gt; 删除缓存区和本地文件</li>
+</ul>
+<p><img src="https://www.runoob.com/wp-content/uploads/2019/05/1557394755-3986-basic-usage.svg-.png" alt="image"></p>
+<p>上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件。</p>
+<ul>
+<li>git add <em>files</em> 把当前文件放入暂存区域。</li>
+<li>git commit 给暂存区域生成快照并提交。</li>
+<li>git reset – <em>files</em> 用来撤销最后一次git add <em>files</em>，你也可以用git reset 撤销所有暂存区域文件。</li>
+<li>git checkout – <em>files</em> 把文件从暂存区域复制到工作目录，用来丢弃本地修改。</li>
+</ul>
+<p>[更多图解参见：]<a href="https://www.runoob.com/w3cnote/git-graphical.html">https://www.runoob.com/w3cnote/git-graphical.html</a></p>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>回退方便(git reset v1.0)</p>
+<ul>
+<li>git tag 查看标签</li>
+<li>git tag (tagname) 如v1.0</li>
+<li>git tag v1.0 039bf8b 给特定的commit版本打标签 比如某次提交的版本是039bf8b</li>
+<li>git tag -d v1.0 删除标签</li>
+<li>git tag -a v1.0 添加版本描述</li>
+<li>git tag v1.0 -m “add tags information” 039bf8b</li>
+<li>git show v1.0 查看某个标签的提交信息</li>
+</ul>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>几乎每一种版本控制系统都以某种形式支持分支。使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。<br>有人把 Git 的分支模型称为必杀技特性，而正是因为它，将 Git 从版本控制系统家族里区分出来。</p>
+<ul>
+<li>git branch (branchname) 新建分支</li>
+<li>git branch 查看当前分支</li>
+<li>git branch -d (branchname) 删除分支</li>
+<li>git checkout (branchname) 切换分支</li>
+<li>git merge (branchname) 合并分支到master</li>
+</ul>
+<h2 id="Github托管代码"><a href="#Github托管代码" class="headerlink" title="Github托管代码"></a>Github托管代码</h2><p><strong>在Github网页上修改了代码，需要执行下面操作，保持本地库一致</strong></p>
+<ul>
+<li>git fetch 拉取远程库代码到本地</li>
+<li>git merge 合并分支</li>
+</ul>
+<p><strong>本地commit之后，上传Github</strong></p>
+<ul>
+<li>git push 推送你的新数据到远程仓库</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>嵌入式开发--交叉编译libmysqlclient</title>
+    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91libmysqlclient/</url>
+    <content><![CDATA[<h2 id="交叉编译libmysqlclient连接mysql数据库"><a href="#交叉编译libmysqlclient连接mysql数据库" class="headerlink" title="交叉编译libmysqlclient连接mysql数据库"></a>交叉编译libmysqlclient连接mysql数据库</h2><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Aa_lihua/article/details/104230081">https://blog.csdn.net/Aa_lihua/article/details/104230081</a></p>
+<p><a href="https://blog.csdn.net/lc315yuhuofei/article/details/103711181">https://blog.csdn.net/lc315yuhuofei/article/details/103711181</a></p>
+<span id="more"></span>
+
+<h3 id="开发板"><a href="#开发板" class="headerlink" title="开发板"></a>开发板</h3><p>ip 192.168.1.136<br>ubuntu 192.168.1.9<br>feodra 192.168.1.8<br>主机 192.168.1.10</p>
+<h3 id="mysql-server配置"><a href="#mysql-server配置" class="headerlink" title="mysql server配置"></a>mysql server配置</h3><p>配置允许远程连接</p>
+<h3 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h3><ol>
+<li>安装cmake</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install cmake</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置CMakeLists.txt</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET(CMAKE_CXX_COMPILER &quot;arm-none-linux-gnueabi-g++&quot;)</span><br><span class="line">SET(CMAKE_C_COMPILER &quot;arm-none-linux-gnueabi-gcc&quot;)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>cmake配置</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -G &quot;Unix Makefiles&quot; -DCMAKE_INSTALL_PREFIX=安装路径</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>make<br>报错1：error: static declaration of ‘rint’ follows non-static declaration<br>解决方案：将include&#x2F;my_global.h中的rint函数注释掉即可<br>报错2：erro:undefined reference floor<br>解决方案：在MakeLists.txt 36 37行set中加入-lm</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">36   SET(CMAKE_C_FLAGS &quot;$&#123;CMAKE_C_FLAGS&#125; -Wall -lm&quot;)</span><br><span class="line">37   SET(CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; -Wall -fno-rtti -fno-exceptions -lm&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="http://www.someabcd.com/SQL/2688599305.html">http://www.someabcd.com/SQL/2688599305.html</a></p>
+<ol start="5">
+<li>make install<br>进行安装 make install，发现其并没有按照之前的配置的安装路径进行安装（竟然安装到我的mysql中去），百思不得其解<br>最后找到一个配置安装路径的文件cmake_install.cmake<br>发现配置的应该是 &#x2F;usr&#x2F;local&#x2F;mysql 是默认的配置路径（明明CMAKE_INSTALL_PREFIX已经定义） 最后直接将默认路径给改成自己想要的路径并重新进行make install即可</li>
+</ol>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>arm-none-linux-gnueabi-gcc -o test testmysql.c -L&#x2F;home&#x2F;vmuser&#x2F;mysql&#x2F;mysql-connector-c-6.0.2&#x2F;install&#x2F;lib -lmysqlclient</p>
+<h3 id="scp-test到板子"><a href="#scp-test到板子" class="headerlink" title="scp test到板子"></a>scp test到板子</h3><p>添加环境变量export LD_LIBRARY_PATH&#x3D;&#x2F;media&#x2F;lib&#x2F;:$LD_LIBRARY_PATH<br>.&#x2F;test</p>
+]]></content>
+      <categories>
+        <category>嵌入式开发</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>libmysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>嵌入式开发--开发环境搭建</title>
+    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="嵌入式开发环境搭建——Docker-WSL2"><a href="#嵌入式开发环境搭建——Docker-WSL2" class="headerlink" title="嵌入式开发环境搭建——Docker+WSL2"></a>嵌入式开发环境搭建——Docker+WSL2</h2><h3 id="Docker安装Ubuntu"><a href="#Docker安装Ubuntu" class="headerlink" title="Docker安装Ubuntu"></a>Docker安装Ubuntu</h3><ol>
+<li>官方<a href="https://www.docker.com/">https://www.docker.com/</a></li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>Docker基本命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker search Ubuntu 	#从Docker Hub上查找ubuntu镜像</span><br><span class="line">docker pull Ubuntu 		#从Docker Hub上下载ubuntu镜像</span><br><span class="line">docker images -a 		#列出本地所有的镜像</span><br><span class="line">docker rmi Ubuntu 		#从Docker中删除Ubuntu镜像</span><br><span class="line"></span><br><span class="line">docker commit -m &quot;提交的描述信息&quot; -a &quot;作者&quot; 容器ID 要创建的目标镜像名称:[标签名]提交容器使之成为一个新的镜像</span><br><span class="line">如：docker commit -m &quot;新的tomcat&quot; -a &quot;lizq&quot; f9e29e8455a5 mytomcat:1.2</span><br><span class="line"></span><br><span class="line">docker run [OPTIONS] IMAGE #根据镜像新建并启动容器。IMAGE是镜像ID或镜像名称</span><br><span class="line">	OPTIONS说明：</span><br><span class="line"> 	--name=“容器新名字”：为容器指定一个名称</span><br><span class="line"> 	-d：后台运行容器，并返回容器ID，也即启动守护式容器</span><br><span class="line"> 	-i：以交互模式运行容器，通常与-t同时使用</span><br><span class="line"> 	-t：为容器重新分配一个伪输入终端，通常与-i同时使用</span><br><span class="line"> 	-P：随机端口映射</span><br><span class="line"> 	-p：指定端口映射，有以下四种格式：</span><br><span class="line">      ip:hostPort:containerPort</span><br><span class="line">      ip::containerPort</span><br><span class="line">      hostPort:containerPort</span><br><span class="line">      containerPort</span><br><span class="line">docker ps			#列出当前所有正在运行的容器</span><br><span class="line">docker ps -a		#列出所有的容器</span><br><span class="line">docker ps -l		#列出最近创建的容器</span><br><span class="line">exit				#退出并停止容器</span><br><span class="line">Ctrl+p+q			#只退出容器，不停止容器</span><br><span class="line">docker start 		#容器ID或容器名称启动容器</span><br><span class="line">docker restart 		#容器ID或容器名称重新启动容器</span><br><span class="line">docker stop			#容器ID或容器名称停止容器</span><br><span class="line">docker kill 		#容器ID或容器名称强制停止容器</span><br><span class="line">docker rm 			#容器ID或容器名称删除容器</span><br><span class="line">docker rm -f 		#容器ID或容器名称强制删除容器</span><br><span class="line">docker exec -it		#容器ID进到容器内</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Docker运行Ubuntu</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; docker pull ubuntu</span><br><span class="line"></span><br><span class="line">&gt; docker run -it -p 22000:22 -v /D:/mnt ubuntu /bin/bash #把D盘映射到ubuntu /mnt 目录下并运行bash 端口映射</span><br><span class="line"></span><br><span class="line">root@4f25326b0866:~# cat /etc/*-release #查看下OS信息</span><br><span class="line">DISTRIB_ID=Ubuntu</span><br><span class="line">DISTRIB_RELEASE=20.04</span><br><span class="line">DISTRIB_CODENAME=focal</span><br><span class="line">DISTRIB_DESCRIPTION=&quot;Ubuntu 20.04.3 LTS&quot;</span><br><span class="line">NAME=&quot;Ubuntu&quot;</span><br><span class="line">VERSION=&quot;20.04.3 LTS (Focal Fossa)&quot;</span><br><span class="line">ID=ubuntu</span><br><span class="line">ID_LIKE=debian</span><br><span class="line">PRETTY_NAME=&quot;Ubuntu 20.04.3 LTS&quot;</span><br><span class="line">VERSION_ID=&quot;20.04&quot;</span><br><span class="line">HOME_URL=&quot;https://www.ubuntu.com/&quot;</span><br><span class="line">SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;</span><br><span class="line">BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;</span><br><span class="line">PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;</span><br><span class="line">VERSION_CODENAME=focal</span><br><span class="line">UBUNTU_CODENAME=focal</span><br><span class="line"></span><br><span class="line">&gt; apt-get update #更新软件源</span><br><span class="line">&gt; apt-get install openssh-server openssh-client vim #安装ssh服务端和客户端 vim编辑器</span><br><span class="line">&gt; service ssh start #启动ssh服务</span><br><span class="line">&gt; vim /etc/ssh/sshd_config  #编辑/etc/ssh/sshd_config 增加PermitRootLogin yes port 22 注释#UsePAM yes</span><br><span class="line">&gt; service ssh restart #重启ssh服务</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>TIPS 忘记映射端口如何新增</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; docker stop 4f25326b0866 #停止ID</span><br><span class="line">&gt; docker commit 4f25326b0866 ubuntu_dev #重新镜像一个image名称未Ubuntu_dev</span><br><span class="line">sha256:474bc763fada7a618d66b2ea57759792dd4689f0102f599e08a02509add3ceea</span><br><span class="line">&gt; docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED          SIZE</span><br><span class="line">ubuntu_dev   latest    474bc763fada   21 seconds ago   271MB</span><br><span class="line">ubuntu       latest    fb52e22af1b0   4 weeks ago      72.8MB</span><br><span class="line">&gt; docker run -it -p 22000:22 ubuntu_dev #映射端口22000 至docker的22</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Docker运行自动开启ssh服务</p>
+<p>参考：<a href="https://www.swack.cn/wiki/001557409799713ca16fa7271334e4cadbf9cc76fd0d933000/0015931471097505edb31370de542088d4520607b6370df000">https://www.swack.cn/wiki/001557409799713ca16fa7271334e4cadbf9cc76fd0d933000/0015931471097505edb31370de542088d4520607b6370df000</a></p>
+<p>首先我们想到的可定使用    <code>systemctl</code>,一般我们如果不是用的docker 容器的话都这么干</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable ssh</span><br></pre></td></tr></table></figure>
+
+<p>但是在容器中是无法这么干的，因为docker容器并没有使用<code>systemctl</code>的权限</p>
+<p>这里可以用脚本解决</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /root/startup_run.sh </span><br><span class="line">chmod +x /root/startup_run.sh</span><br></pre></td></tr></table></figure>
+
+<p>startup_run.sh  脚本内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">echo &quot;[$LOGTIME] startup run...&quot; &gt;&gt;/root/startup_run.log</span><br><span class="line">service ssh start &gt;&gt;/root/startup_run.log</span><br><span class="line">#service mysql start &gt;&gt;/root/startup_run.log</span><br></pre></td></tr></table></figure>
+
+<p>将脚本加入到启动文件中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /root/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>在<code>.bashrc</code>末尾增加如下语句</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># startup run</span><br><span class="line">if [ -f /root/startup_run.sh ]; then</span><br><span class="line">      . /root/startup_run.sh</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>这样就能实现开机启动ssh了</p>
+<p>经多方调研，发现镜像启动时，自动执行的是~&#x2F;.bashrc文件，所以，环境变量需要配置在该文件内，这样镜像启动时，可自动执行该文件，使环境变量生效。</p>
+</li>
+<li><p>安装CMake</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install cmake</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装gcc g++</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install build-essential</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定交叉编译器</p>
+<p>下载交叉编译器<a href="https://releases.linaro.org/components/toolchain/binaries/">https://releases.linaro.org/components/toolchain/binaries/</a></p>
+<p>放入D:\ToolChain\gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf</p>
+<p>之前将D盘映射到了&#x2F;mnt目录下 &#x2F;mnt&#x2F;ToolChain&#x2F;gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf&#x2F;bin</p>
+<p>配置环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、打开编辑~/.bashrc 文件</span><br><span class="line">vim ~/.bashrc</span><br><span class="line">2、在最底部添加以下内容</span><br><span class="line">export PATH=$PATH:/mnt/ToolChain/gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf/bin</span><br><span class="line">3、使环境变量立即生效</span><br><span class="line">source ~/.bashrc</span><br><span class="line">4、验证有没生效</span><br><span class="line">arm-linux-gnueabihf-gcc -v</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="VS-Code-ssh远程连接"><a href="#VS-Code-ssh远程连接" class="headerlink" title="VS Code ssh远程连接"></a>VS Code ssh远程连接</h3><ol>
+<li><p>安装VS Code</p>
+<p><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+</li>
+<li><p>安装插件</p>
+<p>Remote-SSH</p>
+</li>
+<li><p>Remote Explorer中新建ssh 连接到docker的Ubuntu</p>
+<p>ssh root@localhost -p 22000</p>
+</li>
+<li><p>安装插件</p>
+<p>CMake</p>
+<p>CMake Tools</p>
+<p>C&#x2F;C++</p>
+</li>
+</ol>
+<h3 id="GDB-Server远程调试"><a href="#GDB-Server远程调试" class="headerlink" title="GDB Server远程调试"></a>GDB Server远程调试</h3><ol>
+<li><p>拷贝可执行程序到开发板这里以生成的mqtt为例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp mqtt root@192.168.10.2:/tmp</span><br><span class="line">scp ../lib/libpaho-mqtt3a.so root@192.168.10.2:/tmp/libpaho-mqtt3a.so.1</span><br><span class="line">scp ../lib/libpaho-mqtt3c.so root@192.168.10.2:/tmp/libpaho-mqtt3c.so.1</span><br><span class="line">scp /mnt/ToolChain/gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf/bin/gdbserver root@192.168.10.2:/tmp </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ssh 连接至开发板</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh root@192.168.10.2</span><br><span class="line">cd /tmp</span><br><span class="line">export LD_LIBRARY_PATH=/tmp:$LD_LIBRARY_PATH #新增libpath</span><br><span class="line">./mqtt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>gdbsever远程调试</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gdbserver 192.168.10.4:1234 mqtt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>问题</p>
+<p>gdb 提示没有libncurses5安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://stackoverflow.com/questions/17005654/error-while-loading-shared-libraries-libncurses-so-5</span><br><span class="line"></span><br><span class="line">find /usr/lib/ -name *ncurses*</span><br><span class="line">$ sudo ln -s /usr/lib/libncursesw.so.6.0 /usr/lib/libncurses.so.5</span><br><span class="line">$ sudo ln -s /usr/lib/libncursesw.so.6.0 /usr/lib/libtinfo.so.5</span><br></pre></td></tr></table></figure>
+
+<p>提示没安装libpython2.7</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install libpython2.7</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>嵌入式开发</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>家庭组网</title>
     <url>/2022/04/26/%E5%AE%B6%E5%BA%AD%E7%BB%84%E7%BD%91/</url>
     <content><![CDATA[<h1 id="组网方案"><a href="#组网方案" class="headerlink" title="组网方案"></a>组网方案</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>实现外网千兆内网2.5G网络方案</p>
@@ -142,202 +338,6 @@
       <tags>
         <tag>linux</tag>
         <tag>open65421</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>嵌入式开发--开发环境搭建</title>
-    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h2 id="嵌入式开发环境搭建——Docker-WSL2"><a href="#嵌入式开发环境搭建——Docker-WSL2" class="headerlink" title="嵌入式开发环境搭建——Docker+WSL2"></a>嵌入式开发环境搭建——Docker+WSL2</h2><h3 id="Docker安装Ubuntu"><a href="#Docker安装Ubuntu" class="headerlink" title="Docker安装Ubuntu"></a>Docker安装Ubuntu</h3><ol>
-<li>官方<a href="https://www.docker.com/">https://www.docker.com/</a></li>
-</ol>
-<span id="more"></span>
-
-<ol start="2">
-<li><p>Docker基本命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker search Ubuntu 	#从Docker Hub上查找ubuntu镜像</span><br><span class="line">docker pull Ubuntu 		#从Docker Hub上下载ubuntu镜像</span><br><span class="line">docker images -a 		#列出本地所有的镜像</span><br><span class="line">docker rmi Ubuntu 		#从Docker中删除Ubuntu镜像</span><br><span class="line"></span><br><span class="line">docker commit -m &quot;提交的描述信息&quot; -a &quot;作者&quot; 容器ID 要创建的目标镜像名称:[标签名]提交容器使之成为一个新的镜像</span><br><span class="line">如：docker commit -m &quot;新的tomcat&quot; -a &quot;lizq&quot; f9e29e8455a5 mytomcat:1.2</span><br><span class="line"></span><br><span class="line">docker run [OPTIONS] IMAGE #根据镜像新建并启动容器。IMAGE是镜像ID或镜像名称</span><br><span class="line">	OPTIONS说明：</span><br><span class="line"> 	--name=“容器新名字”：为容器指定一个名称</span><br><span class="line"> 	-d：后台运行容器，并返回容器ID，也即启动守护式容器</span><br><span class="line"> 	-i：以交互模式运行容器，通常与-t同时使用</span><br><span class="line"> 	-t：为容器重新分配一个伪输入终端，通常与-i同时使用</span><br><span class="line"> 	-P：随机端口映射</span><br><span class="line"> 	-p：指定端口映射，有以下四种格式：</span><br><span class="line">      ip:hostPort:containerPort</span><br><span class="line">      ip::containerPort</span><br><span class="line">      hostPort:containerPort</span><br><span class="line">      containerPort</span><br><span class="line">docker ps			#列出当前所有正在运行的容器</span><br><span class="line">docker ps -a		#列出所有的容器</span><br><span class="line">docker ps -l		#列出最近创建的容器</span><br><span class="line">exit				#退出并停止容器</span><br><span class="line">Ctrl+p+q			#只退出容器，不停止容器</span><br><span class="line">docker start 		#容器ID或容器名称启动容器</span><br><span class="line">docker restart 		#容器ID或容器名称重新启动容器</span><br><span class="line">docker stop			#容器ID或容器名称停止容器</span><br><span class="line">docker kill 		#容器ID或容器名称强制停止容器</span><br><span class="line">docker rm 			#容器ID或容器名称删除容器</span><br><span class="line">docker rm -f 		#容器ID或容器名称强制删除容器</span><br><span class="line">docker exec -it		#容器ID进到容器内</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Docker运行Ubuntu</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; docker pull ubuntu</span><br><span class="line"></span><br><span class="line">&gt; docker run -it -p 22000:22 -v /D:/mnt ubuntu /bin/bash #把D盘映射到ubuntu /mnt 目录下并运行bash 端口映射</span><br><span class="line"></span><br><span class="line">root@4f25326b0866:~# cat /etc/*-release #查看下OS信息</span><br><span class="line">DISTRIB_ID=Ubuntu</span><br><span class="line">DISTRIB_RELEASE=20.04</span><br><span class="line">DISTRIB_CODENAME=focal</span><br><span class="line">DISTRIB_DESCRIPTION=&quot;Ubuntu 20.04.3 LTS&quot;</span><br><span class="line">NAME=&quot;Ubuntu&quot;</span><br><span class="line">VERSION=&quot;20.04.3 LTS (Focal Fossa)&quot;</span><br><span class="line">ID=ubuntu</span><br><span class="line">ID_LIKE=debian</span><br><span class="line">PRETTY_NAME=&quot;Ubuntu 20.04.3 LTS&quot;</span><br><span class="line">VERSION_ID=&quot;20.04&quot;</span><br><span class="line">HOME_URL=&quot;https://www.ubuntu.com/&quot;</span><br><span class="line">SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;</span><br><span class="line">BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;</span><br><span class="line">PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;</span><br><span class="line">VERSION_CODENAME=focal</span><br><span class="line">UBUNTU_CODENAME=focal</span><br><span class="line"></span><br><span class="line">&gt; apt-get update #更新软件源</span><br><span class="line">&gt; apt-get install openssh-server openssh-client vim #安装ssh服务端和客户端 vim编辑器</span><br><span class="line">&gt; service ssh start #启动ssh服务</span><br><span class="line">&gt; vim /etc/ssh/sshd_config  #编辑/etc/ssh/sshd_config 增加PermitRootLogin yes port 22 注释#UsePAM yes</span><br><span class="line">&gt; service ssh restart #重启ssh服务</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>TIPS 忘记映射端口如何新增</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; docker stop 4f25326b0866 #停止ID</span><br><span class="line">&gt; docker commit 4f25326b0866 ubuntu_dev #重新镜像一个image名称未Ubuntu_dev</span><br><span class="line">sha256:474bc763fada7a618d66b2ea57759792dd4689f0102f599e08a02509add3ceea</span><br><span class="line">&gt; docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED          SIZE</span><br><span class="line">ubuntu_dev   latest    474bc763fada   21 seconds ago   271MB</span><br><span class="line">ubuntu       latest    fb52e22af1b0   4 weeks ago      72.8MB</span><br><span class="line">&gt; docker run -it -p 22000:22 ubuntu_dev #映射端口22000 至docker的22</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Docker运行自动开启ssh服务</p>
-<p>参考：<a href="https://www.swack.cn/wiki/001557409799713ca16fa7271334e4cadbf9cc76fd0d933000/0015931471097505edb31370de542088d4520607b6370df000">https://www.swack.cn/wiki/001557409799713ca16fa7271334e4cadbf9cc76fd0d933000/0015931471097505edb31370de542088d4520607b6370df000</a></p>
-<p>首先我们想到的可定使用    <code>systemctl</code>,一般我们如果不是用的docker 容器的话都这么干</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable ssh</span><br></pre></td></tr></table></figure>
-
-<p>但是在容器中是无法这么干的，因为docker容器并没有使用<code>systemctl</code>的权限</p>
-<p>这里可以用脚本解决</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /root/startup_run.sh </span><br><span class="line">chmod +x /root/startup_run.sh</span><br></pre></td></tr></table></figure>
-
-<p>startup_run.sh  脚本内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">LOGTIME=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)</span><br><span class="line">echo &quot;[$LOGTIME] startup run...&quot; &gt;&gt;/root/startup_run.log</span><br><span class="line">service ssh start &gt;&gt;/root/startup_run.log</span><br><span class="line">#service mysql start &gt;&gt;/root/startup_run.log</span><br></pre></td></tr></table></figure>
-
-<p>将脚本加入到启动文件中</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /root/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>在<code>.bashrc</code>末尾增加如下语句</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># startup run</span><br><span class="line">if [ -f /root/startup_run.sh ]; then</span><br><span class="line">      . /root/startup_run.sh</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-<p>这样就能实现开机启动ssh了</p>
-<p>经多方调研，发现镜像启动时，自动执行的是~&#x2F;.bashrc文件，所以，环境变量需要配置在该文件内，这样镜像启动时，可自动执行该文件，使环境变量生效。</p>
-</li>
-<li><p>安装CMake</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install cmake</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装gcc g++</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install build-essential</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定交叉编译器</p>
-<p>下载交叉编译器<a href="https://releases.linaro.org/components/toolchain/binaries/">https://releases.linaro.org/components/toolchain/binaries/</a></p>
-<p>放入D:\ToolChain\gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf</p>
-<p>之前将D盘映射到了&#x2F;mnt目录下 &#x2F;mnt&#x2F;ToolChain&#x2F;gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf&#x2F;bin</p>
-<p>配置环境变量</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、打开编辑~/.bashrc 文件</span><br><span class="line">vim ~/.bashrc</span><br><span class="line">2、在最底部添加以下内容</span><br><span class="line">export PATH=$PATH:/mnt/ToolChain/gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf/bin</span><br><span class="line">3、使环境变量立即生效</span><br><span class="line">source ~/.bashrc</span><br><span class="line">4、验证有没生效</span><br><span class="line">arm-linux-gnueabihf-gcc -v</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="VS-Code-ssh远程连接"><a href="#VS-Code-ssh远程连接" class="headerlink" title="VS Code ssh远程连接"></a>VS Code ssh远程连接</h3><ol>
-<li><p>安装VS Code</p>
-<p><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
-</li>
-<li><p>安装插件</p>
-<p>Remote-SSH</p>
-</li>
-<li><p>Remote Explorer中新建ssh 连接到docker的Ubuntu</p>
-<p>ssh root@localhost -p 22000</p>
-</li>
-<li><p>安装插件</p>
-<p>CMake</p>
-<p>CMake Tools</p>
-<p>C&#x2F;C++</p>
-</li>
-</ol>
-<h3 id="GDB-Server远程调试"><a href="#GDB-Server远程调试" class="headerlink" title="GDB Server远程调试"></a>GDB Server远程调试</h3><ol>
-<li><p>拷贝可执行程序到开发板这里以生成的mqtt为例</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp mqtt root@192.168.10.2:/tmp</span><br><span class="line">scp ../lib/libpaho-mqtt3a.so root@192.168.10.2:/tmp/libpaho-mqtt3a.so.1</span><br><span class="line">scp ../lib/libpaho-mqtt3c.so root@192.168.10.2:/tmp/libpaho-mqtt3c.so.1</span><br><span class="line">scp /mnt/ToolChain/gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf/bin/gdbserver root@192.168.10.2:/tmp </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ssh 连接至开发板</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh root@192.168.10.2</span><br><span class="line">cd /tmp</span><br><span class="line">export LD_LIBRARY_PATH=/tmp:$LD_LIBRARY_PATH #新增libpath</span><br><span class="line">./mqtt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>gdbsever远程调试</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gdbserver 192.168.10.4:1234 mqtt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>问题</p>
-<p>gdb 提示没有libncurses5安装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://stackoverflow.com/questions/17005654/error-while-loading-shared-libraries-libncurses-so-5</span><br><span class="line"></span><br><span class="line">find /usr/lib/ -name *ncurses*</span><br><span class="line">$ sudo ln -s /usr/lib/libncursesw.so.6.0 /usr/lib/libncurses.so.5</span><br><span class="line">$ sudo ln -s /usr/lib/libncursesw.so.6.0 /usr/lib/libtinfo.so.5</span><br></pre></td></tr></table></figure>
-
-<p>提示没安装libpython2.7</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install libpython2.7</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>嵌入式开发</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>嵌入式开发--交叉编译libmysqlclient</title>
-    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91libmysqlclient/</url>
-    <content><![CDATA[<h2 id="交叉编译libmysqlclient连接mysql数据库"><a href="#交叉编译libmysqlclient连接mysql数据库" class="headerlink" title="交叉编译libmysqlclient连接mysql数据库"></a>交叉编译libmysqlclient连接mysql数据库</h2><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Aa_lihua/article/details/104230081">https://blog.csdn.net/Aa_lihua/article/details/104230081</a></p>
-<p><a href="https://blog.csdn.net/lc315yuhuofei/article/details/103711181">https://blog.csdn.net/lc315yuhuofei/article/details/103711181</a></p>
-<span id="more"></span>
-
-<h3 id="开发板"><a href="#开发板" class="headerlink" title="开发板"></a>开发板</h3><p>ip 192.168.1.136<br>ubuntu 192.168.1.9<br>feodra 192.168.1.8<br>主机 192.168.1.10</p>
-<h3 id="mysql-server配置"><a href="#mysql-server配置" class="headerlink" title="mysql server配置"></a>mysql server配置</h3><p>配置允许远程连接</p>
-<h3 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h3><ol>
-<li>安装cmake</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install cmake</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>配置CMakeLists.txt</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET(CMAKE_CXX_COMPILER &quot;arm-none-linux-gnueabi-g++&quot;)</span><br><span class="line">SET(CMAKE_C_COMPILER &quot;arm-none-linux-gnueabi-gcc&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>cmake配置</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -G &quot;Unix Makefiles&quot; -DCMAKE_INSTALL_PREFIX=安装路径</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>make<br>报错1：error: static declaration of ‘rint’ follows non-static declaration<br>解决方案：将include&#x2F;my_global.h中的rint函数注释掉即可<br>报错2：erro:undefined reference floor<br>解决方案：在MakeLists.txt 36 37行set中加入-lm</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">36   SET(CMAKE_C_FLAGS &quot;$&#123;CMAKE_C_FLAGS&#125; -Wall -lm&quot;)</span><br><span class="line">37   SET(CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; -Wall -fno-rtti -fno-exceptions -lm&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>参考：<a href="http://www.someabcd.com/SQL/2688599305.html">http://www.someabcd.com/SQL/2688599305.html</a></p>
-<ol start="5">
-<li>make install<br>进行安装 make install，发现其并没有按照之前的配置的安装路径进行安装（竟然安装到我的mysql中去），百思不得其解<br>最后找到一个配置安装路径的文件cmake_install.cmake<br>发现配置的应该是 &#x2F;usr&#x2F;local&#x2F;mysql 是默认的配置路径（明明CMAKE_INSTALL_PREFIX已经定义） 最后直接将默认路径给改成自己想要的路径并重新进行make install即可</li>
-</ol>
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>arm-none-linux-gnueabi-gcc -o test testmysql.c -L&#x2F;home&#x2F;vmuser&#x2F;mysql&#x2F;mysql-connector-c-6.0.2&#x2F;install&#x2F;lib -lmysqlclient</p>
-<h3 id="scp-test到板子"><a href="#scp-test到板子" class="headerlink" title="scp test到板子"></a>scp test到板子</h3><p>添加环境变量export LD_LIBRARY_PATH&#x3D;&#x2F;media&#x2F;lib&#x2F;:$LD_LIBRARY_PATH<br>.&#x2F;test</p>
-]]></content>
-      <categories>
-        <category>嵌入式开发</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>libmysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git</title>
-    <url>/2022/04/26/git/</url>
-    <content><![CDATA[<h2 id="Git-工作区、暂存区、版本库"><a href="#Git-工作区、暂存区、版本库" class="headerlink" title="Git 工作区、暂存区、版本库"></a>Git 工作区、暂存区、版本库</h2><p><strong>工作区：</strong> 本地电脑的工作目录</p>
-<p><strong>暂存区：</strong> 称为Stage或index，一般存放在(.git&#x2F;index)   </p>
-<p><strong>版本库：</strong> 工作区的隐藏文件 (.git)    </p>
-<span id="more"></span>
-<h2 id="Git常用操作"><a href="#Git常用操作" class="headerlink" title="Git常用操作"></a>Git常用操作</h2><ul>
-<li>git init 初始化仓库，在本地目录执行git init，就可以建立一个Git仓库</li>
-<li>git clone 拷贝一个仓库到当前目录，可以是本机的也可以是远程服务器上的</li>
-<li>git status 查看项目当前状态</li>
-<li>git diff 显示git status 的详细信息</li>
-<li>git log 查看log信息 –oneline 简明信息 –reverse 反向顺序打印</li>
-<li>git rm &lt;file&gt; 删除缓存区和本地文件</li>
-</ul>
-<p><img src="https://www.runoob.com/wp-content/uploads/2019/05/1557394755-3986-basic-usage.svg-.png" alt="image"></p>
-<p>上面的四条命令在工作目录、暂存目录(也叫做索引)和仓库之间复制文件。</p>
-<ul>
-<li>git add <em>files</em> 把当前文件放入暂存区域。</li>
-<li>git commit 给暂存区域生成快照并提交。</li>
-<li>git reset – <em>files</em> 用来撤销最后一次git add <em>files</em>，你也可以用git reset 撤销所有暂存区域文件。</li>
-<li>git checkout – <em>files</em> 把文件从暂存区域复制到工作目录，用来丢弃本地修改。</li>
-</ul>
-<p>[更多图解参见：]<a href="https://www.runoob.com/w3cnote/git-graphical.html">https://www.runoob.com/w3cnote/git-graphical.html</a></p>
-<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>回退方便(git reset v1.0)</p>
-<ul>
-<li>git tag 查看标签</li>
-<li>git tag (tagname) 如v1.0</li>
-<li>git tag v1.0 039bf8b 给特定的commit版本打标签 比如某次提交的版本是039bf8b</li>
-<li>git tag -d v1.0 删除标签</li>
-<li>git tag -a v1.0 添加版本描述</li>
-<li>git tag v1.0 -m “add tags information” 039bf8b</li>
-<li>git show v1.0 查看某个标签的提交信息</li>
-</ul>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>几乎每一种版本控制系统都以某种形式支持分支。使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。<br>有人把 Git 的分支模型称为必杀技特性，而正是因为它，将 Git 从版本控制系统家族里区分出来。</p>
-<ul>
-<li>git branch (branchname) 新建分支</li>
-<li>git branch 查看当前分支</li>
-<li>git branch -d (branchname) 删除分支</li>
-<li>git checkout (branchname) 切换分支</li>
-<li>git merge (branchname) 合并分支到master</li>
-</ul>
-<h2 id="Github托管代码"><a href="#Github托管代码" class="headerlink" title="Github托管代码"></a>Github托管代码</h2><p><strong>在Github网页上修改了代码，需要执行下面操作，保持本地库一致</strong></p>
-<ul>
-<li>git fetch 拉取远程库代码到本地</li>
-<li>git merge 合并分支</li>
-</ul>
-<p><strong>本地commit之后，上传Github</strong></p>
-<ul>
-<li>git push 推送你的新数据到远程仓库</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
 </search>
