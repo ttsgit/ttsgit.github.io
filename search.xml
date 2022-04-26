@@ -1,50 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>嵌入式开发--交叉编译libmysqlclient</title>
-    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91libmysqlclient/</url>
-    <content><![CDATA[<h2 id="交叉编译libmysqlclient连接mysql数据库"><a href="#交叉编译libmysqlclient连接mysql数据库" class="headerlink" title="交叉编译libmysqlclient连接mysql数据库"></a>交叉编译libmysqlclient连接mysql数据库</h2><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Aa_lihua/article/details/104230081">https://blog.csdn.net/Aa_lihua/article/details/104230081</a></p>
-<p><a href="https://blog.csdn.net/lc315yuhuofei/article/details/103711181">https://blog.csdn.net/lc315yuhuofei/article/details/103711181</a></p>
-<span id="more"></span>
-
-<h3 id="开发板"><a href="#开发板" class="headerlink" title="开发板"></a>开发板</h3><p>ip 192.168.1.136<br>ubuntu 192.168.1.9<br>feodra 192.168.1.8<br>主机 192.168.1.10</p>
-<h3 id="mysql-server配置"><a href="#mysql-server配置" class="headerlink" title="mysql server配置"></a>mysql server配置</h3><p>配置允许远程连接</p>
-<h3 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h3><ol>
-<li>安装cmake</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install cmake</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>配置CMakeLists.txt</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET(CMAKE_CXX_COMPILER &quot;arm-none-linux-gnueabi-g++&quot;)</span><br><span class="line">SET(CMAKE_C_COMPILER &quot;arm-none-linux-gnueabi-gcc&quot;)</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>cmake配置</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -G &quot;Unix Makefiles&quot; -DCMAKE_INSTALL_PREFIX=安装路径</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>make<br>报错1：error: static declaration of ‘rint’ follows non-static declaration<br>解决方案：将include&#x2F;my_global.h中的rint函数注释掉即可<br>报错2：erro:undefined reference floor<br>解决方案：在MakeLists.txt 36 37行set中加入-lm</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">36   SET(CMAKE_C_FLAGS &quot;$&#123;CMAKE_C_FLAGS&#125; -Wall -lm&quot;)</span><br><span class="line">37   SET(CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; -Wall -fno-rtti -fno-exceptions -lm&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>参考：<a href="http://www.someabcd.com/SQL/2688599305.html">http://www.someabcd.com/SQL/2688599305.html</a></p>
-<ol start="5">
-<li>make install<br>进行安装 make install，发现其并没有按照之前的配置的安装路径进行安装（竟然安装到我的mysql中去），百思不得其解<br>最后找到一个配置安装路径的文件cmake_install.cmake<br>发现配置的应该是 &#x2F;usr&#x2F;local&#x2F;mysql 是默认的配置路径（明明CMAKE_INSTALL_PREFIX已经定义） 最后直接将默认路径给改成自己想要的路径并重新进行make install即可</li>
-</ol>
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>arm-none-linux-gnueabi-gcc -o test testmysql.c -L&#x2F;home&#x2F;vmuser&#x2F;mysql&#x2F;mysql-connector-c-6.0.2&#x2F;install&#x2F;lib -lmysqlclient</p>
-<h3 id="scp-test到板子"><a href="#scp-test到板子" class="headerlink" title="scp test到板子"></a>scp test到板子</h3><p>添加环境变量export LD_LIBRARY_PATH&#x3D;&#x2F;media&#x2F;lib&#x2F;:$LD_LIBRARY_PATH<br>.&#x2F;test</p>
-]]></content>
-      <categories>
-        <category>嵌入式开发</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>libmysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git</title>
     <url>/2022/04/26/git/</url>
     <content><![CDATA[<h2 id="Git-工作区、暂存区、版本库"><a href="#Git-工作区、暂存区、版本库" class="headerlink" title="Git 工作区、暂存区、版本库"></a>Git 工作区、暂存区、版本库</h2><p><strong>工作区：</strong> 本地电脑的工作目录</p>
@@ -101,6 +57,191 @@
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>家庭组网</title>
+    <url>/2022/04/26/%E5%AE%B6%E5%BA%AD%E7%BB%84%E7%BD%91/</url>
+    <content><![CDATA[<h1 id="组网方案"><a href="#组网方案" class="headerlink" title="组网方案"></a>组网方案</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>实现外网千兆内网2.5G网络方案<br><img src="/%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE.drawio.png" alt="组网方案"></p>
+<h2 id="设备组成"><a href="#设备组成" class="headerlink" title="设备组成"></a>设备组成</h2><ol>
+<li>猫棒</li>
+<li>N5105 4口2.5G软路由一台做主路由（PEV虚拟机跑pfsense, openwrt, homeassistant）</li>
+<li>TP-LINK 8口2.5G交换机</li>
+<li>2台TP-Link mesh路由器</li>
+<li>群晖NAS DS920+ （家庭影音中心，文件存储）</li>
+</ol>
+<h2 id="Promox-VE"><a href="#Promox-VE" class="headerlink" title="Promox VE"></a>Promox VE</h2><h3 id="虚拟机安装pfsense-和-openwrt"><a href="#虚拟机安装pfsense-和-openwrt" class="headerlink" title="虚拟机安装pfsense 和 openwrt"></a>虚拟机安装pfsense 和 openwrt</h3><h3 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h3><table>
+<thead>
+<tr>
+<th>设备</th>
+<th>IP Address</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>promox ve</td>
+<td>192.168.10.250</td>
+</tr>
+<tr>
+<td>pfsense 主路由</td>
+<td>192.168.10.1</td>
+</tr>
+<tr>
+<td>openwrt 旁路由</td>
+<td>192.168.10.2</td>
+</tr>
+<tr>
+<td>ubuntu server</td>
+<td>192.168.10.251</td>
+</tr>
+<tr>
+<td>homeassistant</td>
+<td>192.168.10.252</td>
+</tr>
+<tr>
+<td>desk-top</td>
+<td>192.168.10.253</td>
+</tr>
+<tr>
+<td>群晖NAS</td>
+<td>192.168.10.254</td>
+</tr>
+</tbody></table>
+<h3 id="pfSense-openvpn-server-setup"><a href="#pfSense-openvpn-server-setup" class="headerlink" title="pfSense openvpn server setup"></a>pfSense openvpn server setup</h3><p>reference: <a href="https://www.sparklabs.com/support/kb/article/setting-up-an-openvpn-server-with-pfsense-and-viscosity/">https://www.sparklabs.com/support/kb/article/setting-up-an-openvpn-server-with-pfsense-and-viscosity/</a></p>
+<p>setup with ipv6</p>
+<p>openvpn protocol -&gt; UDP on IPV6 only<br>Firewall -&gt; Rules -&gt; WAN &#x2F; OpenVPN -&gt; Address Family -&gt; IPV4 + IPV6 </p>
+<h3 id="ipv6-setup"><a href="#ipv6-setup" class="headerlink" title="ipv6 setup"></a>ipv6 setup</h3><p>reference: <a href="https://blog.51cto.com/fxn2025/2454377">https://blog.51cto.com/fxn2025/2454377</a></p>
+<ul>
+<li>Interfaces -&gt; WAN</li>
+</ul>
+<p>IPv6 Configuration Type : DHCP6</p>
+<p>Use IPv4 connectivity as parent interface: Yes</p>
+<p>DHCPv6 Prefix Delegation size： 60</p>
+<p>Send IPv6 prefix hint： Yes</p>
+<p>Do not allow PD&#x2F;Address release ： Yes</p>
+<ul>
+<li>Interfaces -&gt; LAN</li>
+</ul>
+<p>IPv6 Configuration Type： Track Interface</p>
+<p>IPv6 Interface： WAN</p>
+<ul>
+<li>Services -&gt; DHCPV6 Server &amp; RA -&gt; Router Advertisements</li>
+</ul>
+<p>Router mode： Assisted</p>
+<h3 id="aliyun-DDNS"><a href="#aliyun-DDNS" class="headerlink" title="aliyun DDNS"></a>aliyun DDNS</h3><h4 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h4><ul>
+<li><h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4><p>通过修改源码新增DDNS</p>
+</li>
+<li><h4 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h4><p>通过局域网内服务器安装selenium模拟网页登录，获取pfSense的ip来更新</p>
+</li>
+<li><h4 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h4><p>通过局域网内服务器安装pfsense-fauxapi 获取pfSense的ip来更新</p>
+</li>
+</ul>
+<p><em>方案一貌似还是通过外部地址<a href="http://checkip.dyndns.org来获取ip,可能会不准或地址失效,方案二和三原理相同,为了布置在服务器上比较方便,这边选择方案三来部署./">http://checkip.dyndns.org来获取ip，可能会不准或地址失效，方案二和三原理相同，为了布置在服务器上比较方便，这边选择方案三来部署。</a></em></p>
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><ol>
+<li><p>在Proxmox VE上安装ubuntu server</p>
+</li>
+<li><p>安装pip及venv</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo apt install python3-pip</span><br><span class="line">$ sudo apt install python3.10-venv</span><br></pre></td></tr></table></figure></li>
+<li><p>激活python虚拟环境（可选）</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python -m venv env</span><br><span class="line">$ source env/bin/active</span><br></pre></td></tr></table></figure></li>
+<li><p>安装依赖</p>
+<p> <a href="https://github.com/ndejong/pfsense_fauxapi#user-content-config_get">https://github.com/ndejong/pfsense_fauxapi#user-content-config_get</a></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip install pfsense-fauxapi</span><br><span class="line">$ pip install alibabacloud_tea_openapi</span><br><span class="line">$ pip install alibabacloud_alidns20150109==2.0.2</span><br></pre></td></tr></table></figure></li>
+<li><p>运行代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ python aliyun_ddns.py</span><br></pre></td></tr></table></figure></li>
+<li><p>成功后加入定时任务</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ crontab -e</span><br><span class="line"># 每五分钟执行一次</span><br><span class="line">*/5 * * * * python </span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PfsenseFauxapi.PfsenseFauxapi <span class="keyword">import</span> PfsenseFauxapi</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> alibabacloud_tea_openapi <span class="keyword">import</span> models <span class="keyword">as</span> open_api_models</span><br><span class="line"><span class="keyword">from</span> alibabacloud_alidns20150109.client <span class="keyword">import</span> Client <span class="keyword">as</span> Client</span><br><span class="line"><span class="keyword">from</span> alibabacloud_alidns20150109 <span class="keyword">import</span> models <span class="keyword">as</span> models</span><br><span class="line"><span class="keyword">from</span> alibabacloud_tea_util.client <span class="keyword">import</span> Client <span class="keyword">as</span> UtilClient</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(<span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s&#x27;</span>,</span><br><span class="line">            datefmt=<span class="string">&#x27;%a, %d %b %Y %H:%M:%S&#x27;</span>, filename=<span class="string">&#x27;ddns.log&#x27;</span>, level=logging.INFO)</span><br><span class="line"></span><br><span class="line">current_ip_addr = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pfSense config</span></span><br><span class="line">fauxapi_host = <span class="string">&#x27;192.168.10.1&#x27;</span></span><br><span class="line">apikey = <span class="string">&#x27;******************&#x27;</span></span><br><span class="line">apisecret = <span class="string">&#x27;******************&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># config aliyun dynamic dns </span></span><br><span class="line">access_key_id = <span class="string">&#x27;******************&#x27;</span></span><br><span class="line">access_key_secret = <span class="string">&#x27;******************&#x27;</span></span><br><span class="line">endpoint = <span class="string">&#x27;alidns.cn-hangzhou.aliyuncs.com&#x27;</span></span><br><span class="line">domain_name = <span class="string">&#x27;example.com&#x27;</span></span><br><span class="line">rr=<span class="string">&#x27;www&#x27;</span></span><br><span class="line"><span class="built_in">type</span>=<span class="string">&#x27;AAAA&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_interfacestatus</span>():</span><br><span class="line">    FauxapiLib = PfsenseFauxapi(fauxapi_host, apikey, apisecret)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get current ipv6 address</span></span><br><span class="line">    interfacestatus = FauxapiLib.system_stats()[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;stats&#x27;</span>][<span class="string">&#x27;interfacestatus&#x27;</span>]</span><br><span class="line">    ipv6addr = interfacestatus.split(<span class="string">&#x27;^&#x27;</span>)[<span class="number">3</span>]</span><br><span class="line">    is_linked = interfacestatus.split(<span class="string">&#x27;^&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> is_linked, ipv6addr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_record</span>():</span><br><span class="line">    <span class="comment"># config</span></span><br><span class="line">    config = open_api_models.Config(    </span><br><span class="line">    <span class="comment"># 您的AccessKey ID,    </span></span><br><span class="line">    access_key_id=access_key_id,    </span><br><span class="line">    <span class="comment"># # 您的AccessKey Secret,    </span></span><br><span class="line">    access_key_secret=access_key_secret)</span><br><span class="line">    <span class="comment"># 访问的域名</span></span><br><span class="line">    config.endpoint = endpoint</span><br><span class="line">    client = Client(config)</span><br><span class="line"></span><br><span class="line">    describe_domain_records_request = models.DescribeDomainRecordsRequest(domain_name=domain_name, rrkey_word=rr,<span class="built_in">type</span>=<span class="built_in">type</span>)</span><br><span class="line">    resp = client.describe_domain_records(describe_domain_records_request)</span><br><span class="line">    record = resp.body.domain_records.record[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 记录ID</span></span><br><span class="line">    record_id = record.record_id</span><br><span class="line">    <span class="comment"># 记录值</span></span><br><span class="line">    records_value = record.value</span><br><span class="line">    logging.info(<span class="string">&#x27;Previous record value is: %s.&#x27;</span> % records_value)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> UtilClient.equal_string(current_ip_addr, records_value):</span><br><span class="line">        update_domain_records_request = models.UpdateDomainRecordRequest(record_id=record_id, rr=rr, <span class="built_in">type</span>=<span class="built_in">type</span>, value=current_ip_addr)</span><br><span class="line">        client.update_domain_record(update_domain_records_request)</span><br><span class="line">        logging.info(<span class="string">&#x27;Updated record value : %s.&#x27;</span> % current_ip_addr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> get_interfacestatus()[<span class="number">0</span>] == <span class="string">&#x27;up&#x27;</span>:</span><br><span class="line">        current_ip_addr = get_interfacestatus()[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> current_ip_addr:</span><br><span class="line">            update_record()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            logging.warning(<span class="string">&#x27;Can not get the ipv6 address!&#x27;</span>) </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        logging.warning(<span class="string">&#x27;Can not get the ipv6 address. Please check the wan interface!&#x27;</span>) </span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>pfSense</tag>
+        <tag>aliyun DDNS</tag>
+        <tag>PVE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>嵌入式开发--交叉编译libmysqlclient</title>
+    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91libmysqlclient/</url>
+    <content><![CDATA[<h2 id="交叉编译libmysqlclient连接mysql数据库"><a href="#交叉编译libmysqlclient连接mysql数据库" class="headerlink" title="交叉编译libmysqlclient连接mysql数据库"></a>交叉编译libmysqlclient连接mysql数据库</h2><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Aa_lihua/article/details/104230081">https://blog.csdn.net/Aa_lihua/article/details/104230081</a></p>
+<p><a href="https://blog.csdn.net/lc315yuhuofei/article/details/103711181">https://blog.csdn.net/lc315yuhuofei/article/details/103711181</a></p>
+<span id="more"></span>
+
+<h3 id="开发板"><a href="#开发板" class="headerlink" title="开发板"></a>开发板</h3><p>ip 192.168.1.136<br>ubuntu 192.168.1.9<br>feodra 192.168.1.8<br>主机 192.168.1.10</p>
+<h3 id="mysql-server配置"><a href="#mysql-server配置" class="headerlink" title="mysql server配置"></a>mysql server配置</h3><p>配置允许远程连接</p>
+<h3 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h3><ol>
+<li>安装cmake</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install cmake</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置CMakeLists.txt</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET(CMAKE_CXX_COMPILER &quot;arm-none-linux-gnueabi-g++&quot;)</span><br><span class="line">SET(CMAKE_C_COMPILER &quot;arm-none-linux-gnueabi-gcc&quot;)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>cmake配置</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -G &quot;Unix Makefiles&quot; -DCMAKE_INSTALL_PREFIX=安装路径</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>make<br>报错1：error: static declaration of ‘rint’ follows non-static declaration<br>解决方案：将include&#x2F;my_global.h中的rint函数注释掉即可<br>报错2：erro:undefined reference floor<br>解决方案：在MakeLists.txt 36 37行set中加入-lm</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">36   SET(CMAKE_C_FLAGS &quot;$&#123;CMAKE_C_FLAGS&#125; -Wall -lm&quot;)</span><br><span class="line">37   SET(CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; -Wall -fno-rtti -fno-exceptions -lm&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="http://www.someabcd.com/SQL/2688599305.html">http://www.someabcd.com/SQL/2688599305.html</a></p>
+<ol start="5">
+<li>make install<br>进行安装 make install，发现其并没有按照之前的配置的安装路径进行安装（竟然安装到我的mysql中去），百思不得其解<br>最后找到一个配置安装路径的文件cmake_install.cmake<br>发现配置的应该是 &#x2F;usr&#x2F;local&#x2F;mysql 是默认的配置路径（明明CMAKE_INSTALL_PREFIX已经定义） 最后直接将默认路径给改成自己想要的路径并重新进行make install即可</li>
+</ol>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>arm-none-linux-gnueabi-gcc -o test testmysql.c -L&#x2F;home&#x2F;vmuser&#x2F;mysql&#x2F;mysql-connector-c-6.0.2&#x2F;install&#x2F;lib -lmysqlclient</p>
+<h3 id="scp-test到板子"><a href="#scp-test到板子" class="headerlink" title="scp test到板子"></a>scp test到板子</h3><p>添加环境变量export LD_LIBRARY_PATH&#x3D;&#x2F;media&#x2F;lib&#x2F;:$LD_LIBRARY_PATH<br>.&#x2F;test</p>
+]]></content>
+      <categories>
+        <category>嵌入式开发</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>libmysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>嵌入式开发--交叉编译open65421</title>
+    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91open65421/</url>
+    <content><![CDATA[<h2 id="交叉编译open65421"><a href="#交叉编译open65421" class="headerlink" title="交叉编译open65421"></a>交叉编译open65421</h2><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Iron_Sky/article/details/109220261">https://blog.csdn.net/Iron_Sky/article/details/109220261</a></p>
+<p><a href="https://open62541.org/doc/current/building.html">https://open62541.org/doc/current/building.html</a></p>
+<span id="more"></span>
+
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install cmake-curses-gui # for the ccmake graphical interface</span><br><span class="line">sudo apt-get install libmbedtls-dev # for encryption support</span><br><span class="line">sudo apt-get install check libsubunit-dev # for unit tests</span><br><span class="line">sudo apt-get install python-sphinx graphviz # for documentation generation</span><br><span class="line">sudo apt-get install python-sphinx-rtd-theme # documentation style</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vmuser@ubuntu:~/opcua$ git clone https://github.com/open62541/open62541.git</span><br><span class="line">vmuser@ubuntu:~/opcua$ cd open62541</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541$ git submodule update --init --recursive</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2$ mkdir build &amp;&amp; cd build</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ export CC=arm-none-linux-gnueabi-gcc</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ export CXX=arm-none-linux-gnueabi-g++</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_NAMESPACE_ZERO=FULL .. # -DUA_ENABLE_AMALGAMATION=ON .. 这个是static 文件不建议加</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ ccmake .. #指定路径</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ make</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ make install</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="动态链接库"><a href="#动态链接库" class="headerlink" title="动态链接库"></a>动态链接库</h3><p>export LD_LIBARY_PATH 或者拷贝至&#x2F;user&#x2F;lib</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// client.c，功能主要是从server那里获取时间                                                                                                                             </span><br><span class="line">                                                                                                                                         </span><br><span class="line">#include &lt;stdlib.h&gt;                                                                                                                      </span><br><span class="line">#include &quot;open62541.h&quot;                                                                                                                   </span><br><span class="line">int main(void)                                                                                                                           </span><br><span class="line">&#123;                                                                                                                                        </span><br><span class="line">    UA_Client *client = UA_Client_new();                                                                                                 </span><br><span class="line">    UA_ClientConfig_setDefault(UA_Client_getConfig(client));                                                                             </span><br><span class="line">    UA_StatusCode retval = UA_Client_connect(client, &quot;opc.tcp://127.0.0.1:4840&quot;);                                                        </span><br><span class="line">    if(retval != UA_STATUSCODE_GOOD) &#123;                                                                                                   </span><br><span class="line">        UA_Client_delete(client);                                                                                                        </span><br><span class="line">        return (int)retval;                                                                                                              </span><br><span class="line">    &#125;                                                                                                                                    </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    /* Read the value attribute of the node. UA_Client_readValueAttribute is a                                                           </span><br><span class="line">    * wrapper for the raw read service available as UA_Client_Service_read. */                                                           </span><br><span class="line">    UA_Variant value; /* Variants can hold scalar values and arrays of any type */                                                       </span><br><span class="line">    UA_Variant_init(&amp;value);                                                                                                             </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    /* NodeId of the variable holding the current time */                                                                                </span><br><span class="line">    const UA_NodeId nodeId = UA_NODEID_NUMERIC(0, UA_NS0ID_SERVER_SERVERSTATUS_CURRENTTIME);                                             </span><br><span class="line">    retval = UA_Client_readValueAttribute(client, nodeId, &amp;value);                                                                       </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    if(retval == UA_STATUSCODE_GOOD &amp;&amp; UA_Variant_hasScalarType(&amp;value, &amp;UA_TYPES[UA_TYPES_DATETIME]))                                   </span><br><span class="line">    &#123;                                                                                                                                    </span><br><span class="line">        UA_DateTime raw_date = *(UA_DateTime *) value.data;                                                                              </span><br><span class="line">        UA_DateTimeStruct dts = UA_DateTime_toStruct(raw_date);                                                                          </span><br><span class="line">        UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_USERLAND, &quot;date is: %u-%u-%u %u:%u:%u.%03u\n&quot;,                                         </span><br><span class="line">            dts.day, dts.month, dts.year, dts.hour, dts.min, dts.sec, dts.milliSec);                                                     </span><br><span class="line">    &#125;                                                                                                                                    </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    /* Clean up */                                                                                                                       </span><br><span class="line">    UA_Variant_clear(&amp;value);                                                                                                            </span><br><span class="line">    UA_Client_delete(client); /* Disconnects the client internally */                    </span><br><span class="line"> </span><br><span class="line">return EXIT_SUCCESS;                                                        </span><br><span class="line">&#125;                       </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// server.c                                                                                                                                                             </span><br><span class="line">                                                                                                                                         </span><br><span class="line">/* This work is licensed under a Creative Commons CCZero 1.0 Universal License.                                                          </span><br><span class="line"> * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */                                                        </span><br><span class="line">#include &quot;open62541.h&quot;                                                                                                                   </span><br><span class="line">#include &lt;signal.h&gt;                                                                                                                      </span><br><span class="line">#include &lt;stdlib.h&gt;                                                                                                                      </span><br><span class="line">                                                                                                                                         </span><br><span class="line">UA_Boolean running = true;                                                                                                               </span><br><span class="line">                                                                                                                                         </span><br><span class="line">static void stopHandler(int sign) &#123;                                                                                                      </span><br><span class="line">    UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, &quot;received ctrl-c&quot;);                                                                </span><br><span class="line">    running = false;                                                                                                                     </span><br><span class="line">&#125;                                                                                                                                        </span><br><span class="line">                                                                                                                                         </span><br><span class="line">int main(void)                                                                                                                           </span><br><span class="line">&#123;                                                                                                                                        </span><br><span class="line">    signal(SIGINT, stopHandler);                                                                                                         </span><br><span class="line">    signal(SIGTERM, stopHandler);                                                                                                        </span><br><span class="line">    UA_Server *server = UA_Server_new();                                                                                                 </span><br><span class="line">    UA_ServerConfig_setDefault(UA_Server_getConfig(server));                                                                             </span><br><span class="line">    UA_StatusCode retval = UA_Server_run(server, &amp;running);                                                                              </span><br><span class="line">    UA_Server_delete(server);                                                                                                            </span><br><span class="line">    return retval == UA_STATUSCODE_GOOD ? EXIT_SUCCESS : EXIT_FAILURE;                                                                   </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">arm-none-linux-gnueabi-gcc -std=c99 open62541.c server.c -o server -lrt</span><br><span class="line">arm-none-linux-gnueabi-gcc -std=c99 open62541.c client.c -o client -lrt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>error ：initializers</p>
+<p>CMakeLists.txt文件，将-Werror改为-Wno-missing-field-initializers</p>
+<p>error：undefined reference to &#96;clock_gettime</p>
+<p>编译时加 -lrt</p>
+<p>无法ping通127.0.0.1</p>
+<p>ifconfig lo 127.0.0.1</p>
+]]></content>
+      <categories>
+        <category>嵌入式开发</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>open65421</tag>
       </tags>
   </entry>
   <entry>
@@ -194,45 +335,6 @@
       </categories>
       <tags>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>嵌入式开发--交叉编译open65421</title>
-    <url>/2022/04/26/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91open65421/</url>
-    <content><![CDATA[<h2 id="交叉编译open65421"><a href="#交叉编译open65421" class="headerlink" title="交叉编译open65421"></a>交叉编译open65421</h2><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://blog.csdn.net/Iron_Sky/article/details/109220261">https://blog.csdn.net/Iron_Sky/article/details/109220261</a></p>
-<p><a href="https://open62541.org/doc/current/building.html">https://open62541.org/doc/current/building.html</a></p>
-<span id="more"></span>
-
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install cmake-curses-gui # for the ccmake graphical interface</span><br><span class="line">sudo apt-get install libmbedtls-dev # for encryption support</span><br><span class="line">sudo apt-get install check libsubunit-dev # for unit tests</span><br><span class="line">sudo apt-get install python-sphinx graphviz # for documentation generation</span><br><span class="line">sudo apt-get install python-sphinx-rtd-theme # documentation style</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vmuser@ubuntu:~/opcua$ git clone https://github.com/open62541/open62541.git</span><br><span class="line">vmuser@ubuntu:~/opcua$ cd open62541</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541$ git submodule update --init --recursive</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2$ mkdir build &amp;&amp; cd build</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ export CC=arm-none-linux-gnueabi-gcc</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ export CXX=arm-none-linux-gnueabi-g++</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUA_NAMESPACE_ZERO=FULL .. # -DUA_ENABLE_AMALGAMATION=ON .. 这个是static 文件不建议加</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ ccmake .. #指定路径</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ make</span><br><span class="line">vmuser@ubuntu:~/opcua/open62541-1.2.2/build$ make install</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="动态链接库"><a href="#动态链接库" class="headerlink" title="动态链接库"></a>动态链接库</h3><p>export LD_LIBARY_PATH 或者拷贝至&#x2F;user&#x2F;lib</p>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// client.c，功能主要是从server那里获取时间                                                                                                                             </span><br><span class="line">                                                                                                                                         </span><br><span class="line">#include &lt;stdlib.h&gt;                                                                                                                      </span><br><span class="line">#include &quot;open62541.h&quot;                                                                                                                   </span><br><span class="line">int main(void)                                                                                                                           </span><br><span class="line">&#123;                                                                                                                                        </span><br><span class="line">    UA_Client *client = UA_Client_new();                                                                                                 </span><br><span class="line">    UA_ClientConfig_setDefault(UA_Client_getConfig(client));                                                                             </span><br><span class="line">    UA_StatusCode retval = UA_Client_connect(client, &quot;opc.tcp://127.0.0.1:4840&quot;);                                                        </span><br><span class="line">    if(retval != UA_STATUSCODE_GOOD) &#123;                                                                                                   </span><br><span class="line">        UA_Client_delete(client);                                                                                                        </span><br><span class="line">        return (int)retval;                                                                                                              </span><br><span class="line">    &#125;                                                                                                                                    </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    /* Read the value attribute of the node. UA_Client_readValueAttribute is a                                                           </span><br><span class="line">    * wrapper for the raw read service available as UA_Client_Service_read. */                                                           </span><br><span class="line">    UA_Variant value; /* Variants can hold scalar values and arrays of any type */                                                       </span><br><span class="line">    UA_Variant_init(&amp;value);                                                                                                             </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    /* NodeId of the variable holding the current time */                                                                                </span><br><span class="line">    const UA_NodeId nodeId = UA_NODEID_NUMERIC(0, UA_NS0ID_SERVER_SERVERSTATUS_CURRENTTIME);                                             </span><br><span class="line">    retval = UA_Client_readValueAttribute(client, nodeId, &amp;value);                                                                       </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    if(retval == UA_STATUSCODE_GOOD &amp;&amp; UA_Variant_hasScalarType(&amp;value, &amp;UA_TYPES[UA_TYPES_DATETIME]))                                   </span><br><span class="line">    &#123;                                                                                                                                    </span><br><span class="line">        UA_DateTime raw_date = *(UA_DateTime *) value.data;                                                                              </span><br><span class="line">        UA_DateTimeStruct dts = UA_DateTime_toStruct(raw_date);                                                                          </span><br><span class="line">        UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_USERLAND, &quot;date is: %u-%u-%u %u:%u:%u.%03u\n&quot;,                                         </span><br><span class="line">            dts.day, dts.month, dts.year, dts.hour, dts.min, dts.sec, dts.milliSec);                                                     </span><br><span class="line">    &#125;                                                                                                                                    </span><br><span class="line">                                                                                                                                         </span><br><span class="line">    /* Clean up */                                                                                                                       </span><br><span class="line">    UA_Variant_clear(&amp;value);                                                                                                            </span><br><span class="line">    UA_Client_delete(client); /* Disconnects the client internally */                    </span><br><span class="line"> </span><br><span class="line">return EXIT_SUCCESS;                                                        </span><br><span class="line">&#125;                       </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// server.c                                                                                                                                                             </span><br><span class="line">                                                                                                                                         </span><br><span class="line">/* This work is licensed under a Creative Commons CCZero 1.0 Universal License.                                                          </span><br><span class="line"> * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */                                                        </span><br><span class="line">#include &quot;open62541.h&quot;                                                                                                                   </span><br><span class="line">#include &lt;signal.h&gt;                                                                                                                      </span><br><span class="line">#include &lt;stdlib.h&gt;                                                                                                                      </span><br><span class="line">                                                                                                                                         </span><br><span class="line">UA_Boolean running = true;                                                                                                               </span><br><span class="line">                                                                                                                                         </span><br><span class="line">static void stopHandler(int sign) &#123;                                                                                                      </span><br><span class="line">    UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER, &quot;received ctrl-c&quot;);                                                                </span><br><span class="line">    running = false;                                                                                                                     </span><br><span class="line">&#125;                                                                                                                                        </span><br><span class="line">                                                                                                                                         </span><br><span class="line">int main(void)                                                                                                                           </span><br><span class="line">&#123;                                                                                                                                        </span><br><span class="line">    signal(SIGINT, stopHandler);                                                                                                         </span><br><span class="line">    signal(SIGTERM, stopHandler);                                                                                                        </span><br><span class="line">    UA_Server *server = UA_Server_new();                                                                                                 </span><br><span class="line">    UA_ServerConfig_setDefault(UA_Server_getConfig(server));                                                                             </span><br><span class="line">    UA_StatusCode retval = UA_Server_run(server, &amp;running);                                                                              </span><br><span class="line">    UA_Server_delete(server);                                                                                                            </span><br><span class="line">    return retval == UA_STATUSCODE_GOOD ? EXIT_SUCCESS : EXIT_FAILURE;                                                                   </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">arm-none-linux-gnueabi-gcc -std=c99 open62541.c server.c -o server -lrt</span><br><span class="line">arm-none-linux-gnueabi-gcc -std=c99 open62541.c client.c -o client -lrt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>error ：initializers</p>
-<p>CMakeLists.txt文件，将-Werror改为-Wno-missing-field-initializers</p>
-<p>error：undefined reference to &#96;clock_gettime</p>
-<p>编译时加 -lrt</p>
-<p>无法ping通127.0.0.1</p>
-<p>ifconfig lo 127.0.0.1</p>
-]]></content>
-      <categories>
-        <category>嵌入式开发</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>open65421</tag>
       </tags>
   </entry>
 </search>
